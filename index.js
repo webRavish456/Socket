@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 
- const io = new Server(9000,{
+ const io = new Server(*,{
     cors: {
         origin:'https://webravish456.github.io/Whatsapp-clone'
     }
