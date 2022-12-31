@@ -1,8 +1,14 @@
 import { Server } from "socket.io";
+import http from "http";
+import express from 'express';
 
- const io = new Server('https://socket-io-dm8h.onrender.com',{
+const app = express();
+const httpServer=http.createServer(app);
+ const io = new Server(httpServer,{
     cors: {
-        origin:'https://webravish456.github.io/Whatsapp-clone'
+        origin:'*',
+       
+       
     }
 })
 
@@ -32,3 +38,4 @@ io.on('connection',(socket)=>{
          io.to(user.socketId).emit("getMessage",data);
      })
 })
+httpServer.listen(9000);
