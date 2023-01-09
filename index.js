@@ -18,6 +18,11 @@ const addUser= (userData,socketId)=>
 {
    !users.some(user => user.sub == userData.sub) && users.push({...userData, socketId});
 }
+const deleteUser=(socketId)=>
+{
+   
+      io.emit("getUsers",users.filter(user=>user.socketId!==socketId)); 
+}
 
 const getUser = (userId)=>
 {
@@ -37,5 +42,12 @@ io.on('connection',(socket)=>{
          const user = getUser(data.receiverId);
          io.to(user.socketId).emit("getMessage",data);
      })
+  socket.on('disconnect',userData=>{
+          
+            deleteUser(socket.id);
+         
+            console.log('User Disconnected');
+
+     });
 })
 httpServer.listen(9000);
