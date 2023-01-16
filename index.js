@@ -12,7 +12,6 @@ const io = new Server(httpServer,{
     }
 })
 
-
 var users=[];
 
 function addUser (userData,socketId)
